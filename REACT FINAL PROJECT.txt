@@ -1,0 +1,644 @@
+HOME APPLIANCE SERVICE CENTER
+
+Appbar.js
+import * as React from 'react';
+import { styled, alpha } from '@mui/material/styles';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import InputBase from '@mui/material/InputBase';
+import MenuIcon from '@mui/icons-material/Menu';
+import SearchIcon from '@mui/icons-material/Search';
+
+const Search = styled('div')(({ theme }) => ({
+  position: 'relative',
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: '#333',
+  '&:hover': {
+    backgroundColor:'#333',
+  },
+  marginLeft: 0,
+  width: '1250px',
+  [theme.breakpoints.up('sm')]: {
+    marginLeft: theme.spacing(1),
+    width: '1250px' ,
+  },
+}));
+
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: '100%',
+  position: 'absolute',
+  pointerEvents: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: 'inherit',
+  '& .MuiInputBase-input': {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: '1250px' ,
+      '&:focus': {
+        width: '20ch',
+      },
+    },
+  },
+}));
+
+export default function SearchAppBar() {
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="open drawer"
+            sx={{ mr: 2 }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+          >
+            <div>Home &nbsp; About us</div>
+            
+          </Typography>
+          <Search>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Search…"
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </Search>
+        </Toolbar>
+      </AppBar>
+    </Box>
+  );
+}
+
+
+
+
+
+
+Home.js
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { AppBar } from '@mui/material';
+import SearchAppBar from './Appbar';
+import CardExample from './Placeholders';
+const CenteredContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width:1500px;
+  height: 'auto'; /* Set the height of the container to fill the viewport */
+`;
+
+const Header = styled.header`
+  height:'auto';
+  width:1500px;
+  text-align: center;
+  padding: 20px;
+  background-color: #333;
+  color: #fff;
+  `;
+  
+  const Section = styled.section`
+  margin: 20px 0;
+  text-align: center;
+
+  h2 {
+    color: #333;
+  }
+
+  padding: 0;
+  ul {
+    list-style: none;
+
+    li {
+      margin: 5px 0;
+    }
+  }
+`;
+
+const ButtonLink = styled(Link)`
+  display: inline-block;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 10px;
+
+  &:hover {
+    background-color: #555;
+  }
+`;
+const Footer = styled.footer`
+  text-align: center;
+  padding: 10px;
+  width:1500px;
+  background-color: #333;
+  color: #fff;
+  height: 100%;
+`;
+const Home = () => {
+  const [serviceList] = useState(['Appliance Repair', 'Installation Services', 'Maintenance Plans']);
+
+  return (
+    <CenteredContent>
+      <SearchAppBar/>
+      <Header>
+        <h1>Welcome to Home Appliance Service Center</h1>
+        <p>Your one-stop solution for all home appliance repairs.</p>
+      </Header>
+
+      <Section>
+        <h2>Our Services</h2>
+        <ul>
+          {serviceList.map((service, index) => (
+            <li key={index}>{service}</li>
+          ))}
+        </ul>
+      </Section>
+
+      <Section>
+        <h2>Book a Service</h2>
+        <p>Need help with your appliance? Schedule a service now.</p>
+        <ButtonLink to="/booking">Book Now</ButtonLink>
+      </Section>
+     
+      <Section>
+        <h2>Contact Us</h2>
+        <p>Have questions? Reach out to us.</p>
+        <ButtonLink to="LoginSignup">Contact</ButtonLink>
+      </Section>
+      <CardExample/>
+      <Footer>
+        <p>&copy; 2023 Home Appliance Service Center. All rights reserved.</p>
+      </Footer>
+    </CenteredContent>
+
+  );
+};
+
+export default Home;
+
+
+
+
+HomeStyles.js
+// HomeStyles.js
+
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+    position:absolute;
+    font-family: 'Arial', sans-serif;
+  }
+`;
+
+export default GlobalStyle;
+
+
+
+LoginSignup.css
+.container{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 200px;
+    width: 600px;
+    background: #fff;
+    padding-bottom: 30px;
+    background-image: url('https://tse2.mm.bing.net/th?id=OIP.tYulRBgkW5P4zkNAeMKX-QHaF7&pid=Api&P=0&h=180');
+
+}
+
+.header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    margin-top: 30px;
+   
+}
+
+.text{
+    color: #3c009d;
+    font-size: 48px;
+    font-weight: 700;
+   
+}
+
+.underline{
+    width: 61px;
+    height: 6px;
+    background: #3c009d;
+    border-radius: 9px;
+    
+}
+
+.inputs{
+    margin-top: 55px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.input{
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 480px;
+    height: 80px;
+    background: #eaeaea;
+    border-radius: 6px;
+
+}
+
+.input img{
+    margin: 0px 30px;
+}
+
+.input input{
+    height: 50px;
+    width: 400px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #797979;
+    font-size: 19px;
+}
+
+.forgot-password{
+    padding-left: 62px;
+    margin-top: 27px;
+    color: #797979;
+    font-size: 18px;
+}
+
+.forgot-password span{
+    color: #4c00b4;
+    cursor: pointer;
+}
+
+.submit-container{
+    display: flex;
+    gap: 30px;
+    margin: 60px auto;
+}
+
+.submit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 220px;
+    height: 59px;
+    color: #fff;
+    background: #4c00b4;
+    border-radius: 50px;
+    font-size: 19px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.gray{
+    background: #EAEAEA;
+    color: #676767;
+}
+
+
+
+
+LoginSignup.js
+import React, { useState } from 'react'
+import './LoginSignup.css'
+import { Link } from 'react-router-dom';
+
+const LoginSignup = () => {
+
+   const [action,setAction] = useState("Sign up"); 
+  return (
+    <div className='container'>
+        <div className="header">
+            <div className="text">{action}</div>
+            <div className="underline"></div>
+        </div>
+        <div className="inputs">
+            {action==="Login"?<div></div>:<div className="input">
+
+                <input placeholder="Name" type="text" />
+            </div>}
+            
+            <div className="input">
+    
+                <input type="email" placeholder="Email Id"/>
+            </div>
+            <div className="input">
+
+                <input type="password" placeholder="Password"/>
+            </div>
+        </div>
+        {action==="Sign Up"?<div></div>: <div className="forgot-password">Lost Password? <span>Click Here!</span></div>}
+       
+        <div className="submit-container">
+           <Link to="/">SignUp</Link>
+            <div className={action==="Sign Up"?"submit gray":"submit"} onClick={()=>{setAction("login")}}>Login</div>
+        </div>
+    </div>
+  )
+}
+
+export default LoginSignup
+
+
+
+
+Placeholders.js
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Placeholder from 'react-bootstrap/Placeholder';
+
+
+function CardExample() {
+  return (
+    <div className="d-flex justify-content-around">
+      <Card style={{ width: '19rem', height: '15rem'}}>
+              <Card.Body>
+          <Card.Title>Reach Now</Card.Title>
+          <Card.Text>
+          No.13 (Opposite TB Hospital),
+Kuppusamy Street,
+Sunramal Nagar,
+Tambaram Sanitorium,
+Chennai,
+Tamil Nadu 600 047.
+          </Card.Text>
+          <Button variant="primary">Show in Google maps</Button>
+        </Card.Body>
+      </Card>
+      <Card style={{ width: '19rem', height: '15rem'}}>
+        <Card.Img variant="top" src="holder.js/320px260" />
+        <Card.Body>
+          <Card.Title>Contact Us</Card.Title>
+          <Card.Text>
+          MAIL US :
+support@homeappliances.com homeappliances@gmail.com
+CALL NOW :
++91 9841099008
++91 9094042870
+          </Card.Text>
+          <Button variant="primary">Mail directly</Button>
+        </Card.Body>
+      </Card>
+      <Card style={{ width: '19rem', height: '15rem'}}>
+        <Card.Body>
+          <Card.Title>Sales & Services</Card.Title>
+          <Card.Text>
+          Quick Contact :
+044 - 22385033
+044 - 22385035
+          </Card.Text>
+          <Button variant="primary">Call directly</Button>
+          
+        </Card.Body>
+      </Card>
+    </div>
+  );
+}
+
+export default CardExample;
+
+
+
+
+Upperpart.js
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import logo from '../images/logo.png';
+function Upperpart() {
+  return (
+    <Navbar expand="lg" className="bg-body-tertiary">
+      <Container>
+        <img src={logo} style={{ width: '80px', height: 'auto', maxWidth: '100%' , borderRadius: '70%' }}/>
+        <Navbar.Brand href="#home">India's trusted service provider</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#link">Contact us</Nav.Link>
+            <NavDropdown title="About us" id="basic-nav-dropdown">
+              <NavDropdown.Item href="#action/3.1">Faq's</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">
+                Privacy policy
+              </NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Terms and conditions</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="#action/3.4">
+                Separated link
+              </NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
+}
+
+export default Upperpart;
+
+
+
+
+App.css
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+   width:800px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.slider {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  width: 1000px;
+  height: 600px;
+  border-radius: 10px;
+}
+
+.right-arrow {
+  position: absolute;
+  top: 50%;
+  right: 32px;
+  font-size: 3rem;
+  color: #000;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+
+.left-arrow {
+  position: absolute;
+  top: 50%;
+  left: 32px;
+  font-size: 3rem;
+  color: #000;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+
+.slide {
+  opacity: 0;
+  transition-duration: 1s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  transition-duration: 1s;
+  transform: scale(1.08);
+}
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Optional: Set a height for the container to center vertically */
+}
+
+.centered-image {
+   justify-content:center;
+}
+
+
+
+
+
+App.js
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './Components/Home';
+import LoginSignup from './Components/LoginSignup';
+
+const App = () => {
+  return (
+      <div>
+    <Router>
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/LoginSignup" element={<LoginSignup/>}/>
+          <Route path="/booking" element={<LoginSignup/>}/>
+          <Route path="/register" element={<LoginSignup/>}/>
+        </Routes>
+    </Router>
+      </div>
+  );
+};
+
+export default App;
+
+
+
+Index.css
+body {
+margin:50;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height:100vh;
+  background-image: url('https://tse2.mm.bing.net/th?id=OIP.tYulRBgkW5P4zkNAeMKX-QHaF7&pid=Api&P=0&h=180');
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+
+
+Index.js
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
